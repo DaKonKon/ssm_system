@@ -11,8 +11,8 @@ public class Orders {
     private Date orderTime;
     private String orderTimeStr;
     private int orderStatus;
-    private int peopleCount;
     private String orderStatusStr;
+    private int peopleCount;
     private Product product;
     private List<Traveller> travellers;
     private int payType;

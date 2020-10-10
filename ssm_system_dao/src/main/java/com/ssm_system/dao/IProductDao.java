@@ -22,5 +22,5 @@ public interface IProductDao {
 
     //根据ID查询
     @Select("select * from product where id = #{id}")
-    public Product findById(int id) throws Exception;
+    public Product findById(Integer id) throws Exception;
 }
