@@ -1,4 +1,6 @@
+com\ssm_system\dao\IUserDao.class
 com\ssm_system\dao\ITravellerDao.class
 com\ssm_system\dao\IProductDao.class
 com\ssm_system\dao\IOrdersDao.class
 com\ssm_system\dao\IMemberDao.class
+com\ssm_system\dao\IRoleDao.class
