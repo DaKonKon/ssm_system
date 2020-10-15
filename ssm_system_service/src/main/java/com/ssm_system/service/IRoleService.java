@@ -20,4 +20,6 @@ public interface IRoleService {
     void delete(int id) throws Exception;
 
     void addPermissionToRole(int id,int ids[])throws Exception;
+
+
 }

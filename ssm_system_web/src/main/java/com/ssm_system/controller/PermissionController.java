@@ -31,4 +31,19 @@ public class PermissionController {
         permissionService.save(permission);
         return "redirect:findAll.do";
     }
+
+    @RequestMapping("/findById.do")
+    public ModelAndView findById(int id) throws Exception{
+        ModelAndView mv= new ModelAndView();
+        Permission p = permissionService.findById(id);
+        mv.addObject("permission",p);
+        mv.setViewName("permission-show");
+        return mv;
+    }
+
+    @RequestMapping("/deletePermission")
+    public String deletePermission(int id) throws Exception {
+        permissionService.deletePermission(id);
+        return "redirect:findAll.do";
+    }
 }

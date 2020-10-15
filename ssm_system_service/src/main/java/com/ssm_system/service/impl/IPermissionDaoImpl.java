@@ -28,4 +28,16 @@ public class IPermissionDaoImpl implements IPermissionService {
     public void save(Permission permission) throws Exception{
         permissionDao.Save(permission);
     }
+
+    @Override
+    public Permission findById(int id) throws Exception {
+        Permission permission = permissionDao.findById(id);
+        return permission;
+    }
+
+    @Override
+    public void deletePermission(int id) throws Exception {
+        permissionDao.deleteFromRole_Permission(id);
+        permissionDao.deletePermission(id);
+    }
 }
