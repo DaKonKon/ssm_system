@@ -4,6 +4,7 @@ import com.ssm_system.domain.Role;
 import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Service;
 
+import java.lang.reflect.Array;
 import java.util.List;
 
 public interface IRoleDao {
@@ -25,4 +26,23 @@ public interface IRoleDao {
 
     @Insert("insert into role (roleName,roleDesc) values (#{roleName},#{roleDesc})")
     void save(Role role);
+
+
+
+    @Select("select * from role where id = #{id}")
+    @Results({
+            @Result(id = true,property = "id",column = "id"),
+            @Result(property = "roleName",column = "roleName"),
+            @Result(property = "roleDesc",column = "roleDesc"),
+            @Result(property = "permissions",column = "id",javaType = java.util.List.class,many = @Many(select = "com.ssm_system.dao.IPermissionDao.findByRoleId"))
+    })
+    Role findById(int id);
+
+    @Update("delete  from role where id = #{id}")
+    void delete(int id);
+
+    @Insert("insert into role_permission (permissionId,roleId) values (#{permissionId},#{roleId})")
+    void addPermissionToRole(@Param("roleId") int roleId,@Param("permissionId") int permissionId);
+
+
 }
