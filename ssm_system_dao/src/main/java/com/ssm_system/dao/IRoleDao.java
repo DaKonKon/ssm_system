@@ -38,8 +38,14 @@ public interface IRoleDao {
     })
     Role findById(int id);
 
-    @Update("delete  from role where id = #{id}")
-    void delete(int id);
+    @Update("delete  from role where id = #{roleId}")
+    void delete(int roleId);
+
+    @Update("delete from users_role where roleId = #{roleId}")
+    void deleteFromUsers_RoleByRoleId(int roleId);
+
+    @Update("delete from role_permission where roleId = #{roleId}")
+    void deleteFromRole_PermissionByRoleId(int roleId);
 
     @Insert("insert into role_permission (permissionId,roleId) values (#{permissionId},#{roleId})")
     void addPermissionToRole(@Param("roleId") int roleId,@Param("permissionId") int permissionId);

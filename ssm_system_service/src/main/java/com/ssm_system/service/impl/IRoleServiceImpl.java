@@ -34,6 +34,8 @@ public class IRoleServiceImpl implements IRoleService {
 
     @Override
     public void delete(int id) throws Exception {
+        roleDao.deleteFromUsers_RoleByRoleId(id);
+        roleDao.deleteFromRole_PermissionByRoleId(id);
         roleDao.delete(id);
     }
 
