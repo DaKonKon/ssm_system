@@ -40,4 +40,10 @@ public class IPermissionDaoImpl implements IPermissionService {
         permissionDao.deleteFromRole_Permission(id);
         permissionDao.deletePermission(id);
     }
+
+    @Override
+    public List<Permission> findOtherPermissionByRoleId(int roleId) {
+        return permissionDao.findOtherPermissionByRoleId(roleId);
+
+    }
 }

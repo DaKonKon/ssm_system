@@ -16,4 +16,6 @@ public interface IPermissionService {
 
     Permission findById(int id) throws Exception;
     void deletePermission(int id) throws Exception;
+
+    List<Permission> findOtherPermissionByRoleId(int roleId);
 }

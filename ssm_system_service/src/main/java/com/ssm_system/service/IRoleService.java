@@ -21,5 +21,5 @@ public interface IRoleService {
 
     void addPermissionToRole(int id,int ids[])throws Exception;
 
-
+    List<Role> findOtherRoleByUserId(int userId);
 }

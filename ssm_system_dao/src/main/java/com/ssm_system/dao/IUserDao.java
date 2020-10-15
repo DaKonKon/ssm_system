@@ -38,4 +38,9 @@ public interface IUserDao {
             @Result(property = "roles",column = "id",javaType=java.util.List.class,many = @Many(select = "com.ssm_system.dao.IRoleDao.findRoleByUserId"))
     })
     UserInfo findById(int id);
+
+    @Insert("insert into users_role (userId,roleId) values (#{userId},#{roleId})")
+    void addRoleToUser(@Param("userId") int userId,@Param("roleId") int roleId);
+
+
 }

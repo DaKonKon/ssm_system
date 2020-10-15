@@ -62,7 +62,7 @@ public class RoleController {
     public ModelAndView findRoleByIdAndAllPermission(int id) throws Exception {
         ModelAndView mv = new ModelAndView();
         Role role = roleService.findById(id);
-        List<Permission> permissionList = permissionService.findAll();
+        List<Permission> permissionList = permissionService.findOtherPermissionByRoleId(id);
         mv.addObject("role",role);
         mv.addObject("permissionList",permissionList);
         mv.setViewName("role-permission-add");

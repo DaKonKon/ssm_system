@@ -51,4 +51,6 @@ public interface IRoleDao {
     void addPermissionToRole(@Param("roleId") int roleId,@Param("permissionId") int permissionId);
 
 
+    @Select("select * from role where id not in (select roleId from users_role where userId = #{userId})")
+    List<Role> findOtherRoleByUserId(int userId);
 }

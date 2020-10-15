@@ -27,4 +27,8 @@ public interface IPermissionDao {
 
     @Update("delete from role_permission where permissionId = #{id}")
     void deleteFromRole_Permission (int id);
+
+
+    @Select("select * from permission where id not in (select permissionId from role_permission where roleId = #{roleId})")
+    List<Permission> findOtherPermissionByRoleId(int roleId);
 }

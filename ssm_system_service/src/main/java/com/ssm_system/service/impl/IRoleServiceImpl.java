@@ -47,5 +47,11 @@ public class IRoleServiceImpl implements IRoleService {
 
     }
 
+    @Override
+    public List<Role> findOtherRoleByUserId(int userId) {
+        List<Role> otherRole = roleDao.findOtherRoleByUserId(userId);
+        return otherRole;
+    }
+
 
 }

@@ -1,6 +1,8 @@
 package com.ssm_system.controller;
 
+import com.ssm_system.domain.Role;
 import com.ssm_system.domain.UserInfo;
+import com.ssm_system.service.IRoleService;
 import com.ssm_system.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
@@ -15,6 +17,9 @@ import java.util.List;
 public class UserController {
     @Autowired
     IUserService userService ;
+
+    @Autowired
+    IRoleService roleService;
 
     @RequestMapping("/findAll.do")
     public ModelAndView findAll() throws Exception {
@@ -41,5 +46,22 @@ public class UserController {
         mv.setViewName("user-show");
         mv.addObject("user",userInfo);
         return  mv;
+    }
+
+    @RequestMapping("/findUserByIdAndAllRole.do")
+    public ModelAndView findUserByIdAndAllRole(int id) throws Exception {
+        ModelAndView mv = new ModelAndView();
+        UserInfo user = userService.findById(id);
+        mv.addObject("user",user);
+        List<Role> roleList = roleService.findOtherRoleByUserId(id);
+        mv.addObject("roleList",roleList);
+        mv.setViewName("user-role-add");
+        return mv;
+    }
+
+    @RequestMapping("/addRoleToUser.do")
+    public String addRoleToUser(int userId,int[] ids) throws Exception {
+        userService.addRoleToUser(userId,ids);
+        return "redirect:findAll.do";
     }
 }

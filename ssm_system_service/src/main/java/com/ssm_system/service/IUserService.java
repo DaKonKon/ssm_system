@@ -11,4 +11,6 @@ public interface IUserService extends UserDetailsService {
     public void save(UserInfo user) throws Exception;
 
     UserInfo findById(int id) throws Exception;
+
+    void addRoleToUser(int userId,int[] ids) throws Exception;
 }
