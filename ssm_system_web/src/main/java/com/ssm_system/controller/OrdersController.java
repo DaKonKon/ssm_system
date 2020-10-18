@@ -36,7 +36,7 @@ public class OrdersController {
     @RequestMapping("/findAll.do")
 //    @RolesAllowed("ADMIN")
     @Secured("ROLE_ADMIN")
-    public ModelAndView findAll(@RequestParam(name="page",required=true,defaultValue = "1") int page,@RequestParam(name="size",required = true,defaultValue = "4") int size) throws Exception{
+    public ModelAndView findAll(@RequestParam(name="page",required=true,defaultValue = "1") Integer page,@RequestParam(name="size",required = true,defaultValue = "4") Integer size) throws Exception{
         ModelAndView mv = new ModelAndView();
         List<Orders> ordersList = ordersService.findAll(page,size);
         //分页bean
