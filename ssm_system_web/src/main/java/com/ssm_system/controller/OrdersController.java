@@ -5,11 +5,13 @@ import com.ssm_system.domain.Orders;
 import com.ssm_system.service.IOrdersService;
 import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.annotation.security.RolesAllowed;
 import java.util.List;
 
 
@@ -32,6 +34,8 @@ public class OrdersController {
 //    }
 
     @RequestMapping("/findAll.do")
+//    @RolesAllowed("ADMIN")
+    @Secured("ROLE_ADMIN")
     public ModelAndView findAll(@RequestParam(name="page",required=true,defaultValue = "1") int page,@RequestParam(name="size",required = true,defaultValue = "4") int size) throws Exception{
         ModelAndView mv = new ModelAndView();
         List<Orders> ordersList = ordersService.findAll(page,size);

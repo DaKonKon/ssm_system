@@ -8,8 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.annotation.security.RolesAllowed;
 import java.util.List;
 
 @Controller
@@ -22,6 +24,7 @@ public class UserController {
     IRoleService roleService;
 
     @RequestMapping("/findAll.do")
+
     public ModelAndView findAll() throws Exception {
         ModelAndView mv = new ModelAndView();
         List<UserInfo> users = userService.findAll();
@@ -60,7 +63,7 @@ public class UserController {
     }
 
     @RequestMapping("/addRoleToUser.do")
-    public String addRoleToUser(int userId,int[] ids) throws Exception {
+    public String addRoleToUser(@RequestParam(name="userId",required = true) int userId, @RequestParam(name="ids",required = true) int[] ids) throws Exception {
         userService.addRoleToUser(userId,ids);
         return "redirect:findAll.do";
     }
